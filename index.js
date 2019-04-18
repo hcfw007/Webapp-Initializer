@@ -5,7 +5,7 @@ const figlet = require('figlet')
 clear()
 
 console.log(
-    chalk.blue(
+    chalk.yellow(
         figlet.textSync('Webapp Initializer', { horizontalLayout: 'full' })
     )
 )

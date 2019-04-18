@@ -1,5 +1,5 @@
 {
-  "name": "Simple-Webpage-Initializer",
+  "name": "webapp-initializer",
   "version": "0.0.0",
   "description": "A personal simple web app initializer",
   "main": "index.js",
