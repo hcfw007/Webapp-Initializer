@@ -1,0 +1,24 @@
+{
+    "devDependencies":  {
+        "basic": [
+            "@babel/core",
+            "babel-loader",
+            "clean-webpack-plugin",
+            "css-loader",
+            "eslint",
+            "eslint-loader",
+            "file-loader",
+            "html-loader",
+            "style-loader",
+            "stylus",
+            "stylus-loader",
+            "webpack",
+            "webpack-cli",
+            "webpack-dev-server"
+        ],
+        "ts": [
+            "typescript",
+            "ts-loader"
+        ]
+    }
+}
