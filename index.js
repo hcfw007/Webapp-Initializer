@@ -4,7 +4,8 @@ const figlet = require('figlet')
 const inquirer = require('./lib/inquirer.js')
 const fs = require('fs')
 const path = require('path')
-const packageJson = require('./config/package-base.json')
+const base = require('./config/base/')
+const files = require('./lib/files.js')
 
 clear()
 
@@ -20,14 +21,12 @@ inquirer.askProjectInfo().then(answers => {
 
     // mkdir
     if (process.cwd().split('/')[process.cwd().split('/').length - 1] !== answers.name) {
-        fs.mkdirSync(path.resolve(workDir, answers.name))
+        if (!files.directoryExists(path.resolve(workDir, answers.name))) fs.mkdirSync(path.resolve(workDir, answers.name))
         workDir = path.resolve(workDir, answers.name)
     }
 
     // create package.json
-    for (let item in packageJson) {
-        if (answers[item]) packageJson[item] = answers[item]
-    }
+    let packageJson = base.packageJson
 
     // template-specific process
     
