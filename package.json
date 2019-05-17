@@ -1,10 +1,13 @@
 {
-  "name": "",
+  "name": "webapp-initializer",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "author": "",
   "license": "MIT",
+  "bin": {
+    "webapp": "./bin/webapp.js"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "babel-loader": "^8.0.6",
@@ -20,5 +23,11 @@
     "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.3.1"
+  },
+  "dependencies": {
+    "clear": "^0.1.0",
+    "commander": "^2.20.0",
+    "figlet": "^1.2.1",
+    "inquirer": "^6.3.1"
   }
 }
