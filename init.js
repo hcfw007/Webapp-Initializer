@@ -29,16 +29,18 @@ function init() {
       workDir = path.resolve(workDir, answers.name)
     }
 
-    // create package.json
+    // create base files
     let packageJson = base.packageJson
+    let eslintJson = base.eslintJson
 
     // basic package info
     packageJson.name = answers.name
 
     // template-specific process
       
-    // write package.json
+    // write files
     fs.writeFileSync(path.resolve(workDir, 'package.json'), JSON.stringify(packageJson, null, 2))
+    fs.writeFileSync(path.resolve(workDir, 'eslintrc.js'), 'module.exports = ' + JSON.stringify(eslintJson, null, 2))
   })
 
 }
