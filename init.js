@@ -29,18 +29,31 @@ function init() {
       workDir = path.resolve(workDir, answers.name)
     }
 
+    for (dir of base.directories) {
+      if (!files.directoryExists(path.resolve(workDir, dir))) {
+        fs.mkdirSync(path.resolve(workDir, dir))
+      }
+    }
+
     // create base files
-    let packageJson = base.packageJson
-    let eslintJson = base.eslintJson
+    let filesInfo = base.files
 
     // basic package info
-    packageJson.name = answers.name
+    let packageJson = filesInfo.find((ele) => ele.name === 'package.json')
+    packageJson.data.name = answers.name
 
     // template-specific process
       
     // write files
-    fs.writeFileSync(path.resolve(workDir, 'package.json'), JSON.stringify(packageJson, null, 2))
-    fs.writeFileSync(path.resolve(workDir, 'eslintrc.js'), 'module.exports = ' + JSON.stringify(eslintJson, null, 2))
-  })
+    for (item of filesInfo) {
+      let data = JSON.stringify(item.data, null, 2)
+      if (item.transform) data = item.transform(data)
 
+      let filepath = workDir
+      if (item.path) filepath = path.resolve(workDir, filepath)
+
+      console.log('writing ' + item.name + ' in ' + filepath)
+      fs.writeFileSync(path.resolve(filepath, item.name), data)
+    }
+  })
 }
