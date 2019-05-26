@@ -6,6 +6,7 @@ const fs = require('fs')
 const path = require('path')
 const base = require('./config/base')
 const files = require('./lib/files.js')
+const Transformer = require('./lib/transform')
 
 
 module.exports = init
@@ -29,7 +30,7 @@ function init() {
       workDir = path.resolve(workDir, answers.name)
     }
 
-    for (dir of base.directories) {
+    for (let dir of base.directories) {
       if (!files.directoryExists(path.resolve(workDir, dir))) {
         fs.mkdirSync(path.resolve(workDir, dir))
       }
@@ -45,9 +46,11 @@ function init() {
     // template-specific process
       
     // write files
-    for (item of filesInfo) {
+    for (let item of filesInfo) {
       let data = JSON.stringify(item.data, null, 2)
-      if (item.transform) data = item.transform(data)
+      if (item.transformers) {
+        data = Transformer.transform(data, item.transformers)
+      }
 
       let filepath = workDir
       if (item.path) filepath = path.resolve(workDir, filepath)

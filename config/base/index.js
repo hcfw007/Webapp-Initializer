@@ -10,10 +10,8 @@ module.exports = {
     {
       'name': 'eslintrc.js',
       'data': eslintJson,
-      'transform': (data) => {
-        return 'module.exports = ' + data
-      }
-    }
+      'transformers': ['disableEslint', 'exports']
+    },
   ],
   directories: [
   ],
