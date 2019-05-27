@@ -49,7 +49,7 @@ function init() {
     for (let item of filesInfo) {
       let data = JSON.stringify(item.data, null, 2)
       if (item.transformers) {
-        data = Transformer.transform(data, item.transformers)
+        data = Transformer.transform(data, item.transformers, item.appendix)
       }
 
       let filepath = workDir
