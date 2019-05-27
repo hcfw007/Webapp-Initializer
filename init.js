@@ -25,7 +25,7 @@ function init() {
     let workDir = process.cwd()
 
     // mkdir
-    if (process.cwd().split('/')[process.cwd().split('/').length - 1] !== answers.name) {
+    if (process.cwd().split(path.sep)[process.cwd().split(path.sep).length - 1] !== answers.name) {
       if (!files.directoryExists(path.resolve(workDir, answers.name))) fs.mkdirSync(path.resolve(workDir, answers.name))
       workDir = path.resolve(workDir, answers.name)
     }
